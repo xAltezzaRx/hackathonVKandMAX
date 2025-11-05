@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 class UserOut(BaseModel):
     id: int
@@ -12,4 +13,4 @@ class UserOut(BaseModel):
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    full_name: str | None = ""
+    full_name: Optional[str] = ""
