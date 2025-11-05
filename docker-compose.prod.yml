@@ -1,0 +1,17 @@
+services:
+  backend:
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
+    environment:
+      ENV: prod
+  
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    image: hackathon/frontend:prod
+    command: ["nginx","-g","daemon off;"]
+    ports:
+      - "8080:80"   
+    depends_on:
+      - backend
